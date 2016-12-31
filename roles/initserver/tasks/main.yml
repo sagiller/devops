@@ -1,0 +1,73 @@
+---
+# This role is to init server status with common tools and configs for centos7
+
+- name: Add group "sagiller"
+  group:
+    name: sagiller
+    state: present
+
+- name: Add user "{{working_user_name}}"
+  user:
+    name: "{{working_user_name}}"
+    password: "{{working_user_password}}"
+    shell: /bin/bash
+    generate_ssh_key: yes
+    ssh_key_bits: 2048
+    ssh_key_file: .ssh/id_rsa
+
+- name: Add authorized_keys file to "{{working_user_name}}"/.ssh/ to enable rsa login from my macos with user "{{working_user_name}}"
+  copy: 
+    src: authorized_keys
+    dest: /home/{{working_user_name}}/.ssh/authorized_keys
+    mode: 0600
+    owner: "{{working_user_name}}"
+    group: sagiller
+
+- name: Change the mode of "{{working_user_name}}"/.ssh to 700
+  file:
+    path: /home/{{working_user_name}}/.ssh
+    owner: "{{working_user_name}}"
+    group: sagiller
+    mode: 0700
+
+- name: Change the mode of /etc/sudoers from 400 to 600
+  file:
+    path: /etc/sudoers
+    mode: 0600
+
+# - name: Delete user "{{working_user_name}}" from the sudoers file
+#   command:
+#     sed -i '/sagiller/d' /etc/sudoers
+
+# - name: Add user "{{working_user_name}}" to the sudoers file
+#   command:
+#     sed -i '$a\sagiller ALL=(ALL)  ALL' /etc/sudoers
+
+- name: Add user "{{working_user_name}}" to the sudoers file
+  lineinfile:
+    dest: /etc/sudoers
+    state: present
+    line: '{{working_user_name}} ALL=(ALL)  ALL'
+
+- name: Change the mode of /etc/sudoers from 600 back to 400
+  file:
+    path: /etc/sudoers
+    mode: 0400
+
+- name: mkdir /documents/devops
+  file: 
+    path: /documents/devops 
+    state: directory 
+    owner: "{{working_user_name}}"
+    group: sagiller
+    mode: 0755
+
+- name: Install Tool Vim(latest version)
+  yum:
+    name: vim
+    state: present
+
+- name: Install Tool Git(latest version)
+  yum:
+    name: git
+    state: present  		

@@ -1,0 +1,25 @@
+---
+#playbook for test
+- name: invoke role init
+  hosts: centos
+  remote_user: root
+  become: yes
+  become_method: sudo
+  roles:
+     - initserver
+
+- name: invoke role java
+  hosts: centos
+  remote_user: sagiller
+  become: yes
+  become_method: sudo
+  roles:
+     - java
+
+- name: invoke role jenkins
+  hosts: centos
+  remote_user: sagiller
+  become: yes
+  become_method: sudo
+  roles:
+     - jenkins
