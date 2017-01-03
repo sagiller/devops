@@ -22,4 +22,4 @@
   copy: src=/documents/devops/jenkins-2.32.1-1.1.noarch.rpm dest=/documents/devops/jenkins-2.32.1-1.1.noarch.rpm 
 
 - name: Install Jenkins
-  command: rpm –ih /documents/devops/jenkins-2.32.1-1.1.noarch.rpm 		
+  command: rpm -ih /documents/devops/jenkins-2.32.1-1.1.noarch.rpm 		
