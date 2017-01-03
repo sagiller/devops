@@ -19,8 +19,26 @@
 #     name: jenkins
 #     state: present 
 - name: copy Jenkins rpm package
-  copy: src=/documents/devops/jenkins-2.32.1-1.1.noarch.rpm dest=/documents/devops/jenkins-2.32.1-1.1.noarch.rpm 
+  copy: 
+    src: /documents/devops/jenkins-2.32.1-1.1.noarch.rpm 
+    dest: /documents/devops/jenkins-2.32.1-1.1.noarch.rpm 
 
 - name: Install Jenkins
   command: rpm -ih /documents/devops/jenkins-2.32.1-1.1.noarch.rpm 	
-  ignore_errors: yes	
+  ignore_errors: yes
+
+- name: Config jenkins
+  template:
+    src: jenkins
+    dest: /etc/sysconfig/jenkins
+  when: "ansible_os_family == 'RedHat'"
+  #notify: restart jenkins
+
+- name: Restart jenkins
+  service:
+    name: jenkins
+    state: restarted
+
+- name: wait for jenkins to start
+  wait_for:
+    port: "{{jenkins_port}}"

@@ -7,3 +7,5 @@ working_user_name: sagiller
 #	>python -c "from passlib.hash import sha512_crypt; import getpass; print sha512_crypt.encrypt(getpass.getpass())"
 #	then enter your password
 working_user_password: $6$rounds=656000$GntMSLhtCaowGdwG$MSFuCSpGegW0heqszECgIBpx8aBYNhVYPI0wjMMMrz/byQVcGVjyJv5HhJGMfvib46elV7wIqmgg5/ugMqmCL0
+
+jenkins_port: 8888
