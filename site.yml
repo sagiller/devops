@@ -16,6 +16,14 @@
   roles:
      - java
 
+- name: invoke role maven
+  hosts: centos
+  remote_user: sagiller
+  become: yes
+  become_method: sudo
+  roles:
+     - maven
+
 - name: invoke role jenkins
   hosts: centos
   remote_user: sagiller

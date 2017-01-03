@@ -9,3 +9,4 @@ working_user_name: sagiller
 working_user_password: $6$rounds=656000$GntMSLhtCaowGdwG$MSFuCSpGegW0heqszECgIBpx8aBYNhVYPI0wjMMMrz/byQVcGVjyJv5HhJGMfvib46elV7wIqmgg5/ugMqmCL0
 
 jenkins_port: 8888
+jenkins_initialAdminPassword: 123456

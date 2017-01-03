@@ -1,0 +1,27 @@
+---
+# This role is to install and config maven for centos7
+
+- name: copy maven tar package
+  copy: 
+    src: /documents/devops/apache-maven-3.3.9-bin.tar.gz 
+    dest: /documents/devops/apache-maven-3.3.9-bin.tar.gz 
+
+- name: unarchive maven package(means install)
+  unarchive:
+    src: /documents/devops/apache-maven-3.3.9-bin.tar.gz
+    dest: /opt
+
+- name: Config maven environment parameters
+  lineinfile:
+    dest: /etc/profile
+    state: present
+    line: 'export M2_HOME=/opt/apache-maven-3.3.9'
+
+- lineinfile:
+    dest: /etc/profile
+    state: present
+    line: 'export PATH=$M2_HOME/bin:$PATH'
+
+- name: Source /etc/profile
+  command: source /etc/profile
+

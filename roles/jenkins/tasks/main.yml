@@ -34,6 +34,11 @@
   when: "ansible_os_family == 'RedHat'"
   #notify: restart jenkins
 
+#- name: Set default admin password for jenkins
+#  template:
+#    src: initialAdminPassword
+#    dest: /var/lib/jenkins/secrets/initialAdminPassword
+
 - name: Restart jenkins
   service:
     name: jenkins
