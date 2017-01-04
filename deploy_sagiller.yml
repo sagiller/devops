@@ -1,0 +1,7 @@
+- name: invoke role deploy
+  hosts: centos
+  remote_user: sagiller
+  become: yes
+  become_method: sudo
+  roles:
+     - deploy 

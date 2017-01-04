@@ -16,5 +16,7 @@ tomcat_https_port: 8443
 admin_username: admin
 admin_password: admin
 
+sagiller_war_path: /var/lib/jenkins/workspace/sagiller_test_maven/target
+
 
 

@@ -2,18 +2,13 @@
   command: service tomcat stop
 
 - name: remove old version package direcoty
-  file: path=/usr/share/tomcat/webapps/UniversityTool/ state=absent
+  file: path=/usr/share/tomcat/webapps/sagiller/ state=absent
 
 - name: remove old version package
-  file: path=/usr/share/tomcat/webapps/UniversityTool.war state=absent
+  file: path=/usr/share/tomcat/webapps/sagiller.war state=absent
+
 - name: Copy war file to webapps directory
-  copy: src=/var/lib/jenkins/workspace/pipeline_test/target/UniversityTool.war dest=/usr/share/tomcat/webapps/UniversityTool.war
-
-- name: workaround about the exception of UnknownHostException wadcnhgh02 corp capgemini com
-  command: sed -i '/wadcnhgh02.corp.capgemini.com/d' /etc/hosts
-
-- name: workaround about the exception of UnknownHostException wadcnhgh02 corp capgemini com
-  command: sed -i '$a\10.61.208.38    wadcnhgh02.corp.capgemini.com   unkownhost' /etc/hosts
+  copy: src="{{ sagiller_war_path }}"/sagiller.war dest=/usr/share/tomcat/webapps/sagiller.war
 
 - name: start tomcat server
   command: service tomcat start
