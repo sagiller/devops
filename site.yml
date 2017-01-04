@@ -31,3 +31,11 @@
   become_method: sudo
   roles:
      - jenkins
+
+- name: invoke role tomcat
+  hosts: centos
+  remote_user: sagiller
+  become: yes
+  become_method: sudo
+  roles:
+     - tomcat     
