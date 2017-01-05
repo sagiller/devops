@@ -10,7 +10,8 @@
   user: 
     name: tomcat 
     group: tomcat 
-    home: /usr/share/tomcat createhome=no
+    home: /usr/share/tomcat 
+    createhome: no
   become: True
   become_method: sudo
 
