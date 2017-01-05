@@ -1,0 +1,68 @@
+---
+- name: add group "nginx"
+  group: 
+    name: nginx
+
+- name: add user "nginx"
+  user: 
+    name: nginx 
+    group: nginx 
+    shell: /sbin/nologin 
+    createhome: no
+  become: True
+  become_method: sudo
+
+- name: copy /nginx-1.10.2.tar.gz to agent server
+  copy: src=/documents/devops/nginx-1.10.2.tar.gz dest=/documents/devops/nginx-1.10.2.tar.gz
+
+- name: Extract archive
+  command: chdir=/documents/devops /bin/tar xvzf nginx-1.10.2.tar.gz -C /opt creates=/opt/nginx-1.10.2
+
+- name: Install gcc for compile
+  yum:
+    name: gcc-c++
+    state: present
+
+- name: Install pcre for nginx
+  yum:
+    name: pcre
+    state: present
+
+- name: Install pcre-devel for nginx
+  yum:
+    name: pcre-devel
+    state: present
+
+- name: Install openssl for nginx(md5)
+  yum:
+    name: openssl
+    state: present
+
+- name: Install openssl-devel for nginx(md5)
+  yum:
+    name: openssl-devel
+    state: present
+
+- name: Install libxslt for nginx(md5)
+  yum:
+    name: libxslt
+    state: present
+
+- name: Install zlib for nginx
+  yum:
+    name: zlib
+    state: present 
+
+- name: Install zlib for nginx
+  yum:
+    name: zlib-devel
+    state: present   
+
+- name: Config nginx
+  command: chdir=/opt/nginx-1.10.2 ./configure
+
+- name: make install nginx
+  make: chdir=/opt/nginx-1.10.2 target=install
+
+- name: start nginx
+  command: /usr/local/nginx/sbin/nginx -c /usr/local/nginx/conf/nginx.conf
