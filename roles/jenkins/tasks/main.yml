@@ -23,8 +23,14 @@
     src: /documents/devops/jenkins-2.32.1-1.1.noarch.rpm 
     dest: /documents/devops/jenkins-2.32.1-1.1.noarch.rpm 
 
-- name: Install Jenkins
+- name: Install Jenkins from rpm with rpm
   command: rpm -ih /documents/devops/jenkins-2.32.1-1.1.noarch.rpm 	
+  ignore_errors: yes
+
+- name: Install jenkins from rpm with yum
+  yum: 
+    name: /documents/devops/jenkins-2.32.1-1.1.noarch.rpm
+    state: present
   ignore_errors: yes
 
 - name: Config jenkins

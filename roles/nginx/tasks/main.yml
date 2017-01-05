@@ -25,7 +25,17 @@
 
 - name: Install pcre for nginx
   yum:
-    name: pcre
+    name: pcre-devel
+    state: present
+
+- name: Install openssl for nginx(md5)
+  yum:
+    name: openssl
+    state: present
+
+- name: Install openssl-devel for nginx(md5)
+  yum:
+    name: openssl-devel
     state: present
 
 - name: Config nginx
