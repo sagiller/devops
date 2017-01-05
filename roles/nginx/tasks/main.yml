@@ -1,21 +1,28 @@
 ---
 - name: Install epel-release
-    yum:
-      name: epel-release
-      state: present
+  yum:
+    name: epel-release
+    state: present
 
 - name: Install nginx
-    yum:
-      name: nginx
-      state: present
+  yum:
+    name: nginx
+    state: present
 
 - name: Copy nginx main configuration
-  template: src=nginx.conf dest=/etc/nginx/nginx.conf
+  template: 
+    src: nginx.conf
+    dest: /etc/nginx/nginx.conf
   notify: restart nginx
 
 - name: Copy nginx configuration for tomcat
-  template: src=tomcat.conf dest=/etc/nginx/conf.d/tomcat.conf
+  template: 
+    src: tomcat.conf 
+    dest: /etc/nginx/conf.d/tomcat.conf
   notify: restart nginx
 
 - name: http service state
-  service: name=nginx state=started enabled=yes
+  service:
+    name: nginx
+    state: started
+    enabled: yes
