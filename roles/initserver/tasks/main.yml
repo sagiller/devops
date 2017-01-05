@@ -62,6 +62,12 @@
     group: sagiller
     mode: 0755
 
+- name: mkdir /sites
+  file: 
+    path: /sites 
+    state: directory
+    mode: 0755
+
 - name: Install Tool Vim(latest version)
   yum:
     name: vim
