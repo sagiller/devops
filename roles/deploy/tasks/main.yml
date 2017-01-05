@@ -8,7 +8,7 @@
   file: path=/usr/share/tomcat/webapps/sagiller.war state=absent
 
 - name: Copy war file to webapps directory
-  copy: src="{{ sagiller_war_path }}"/sagiller.war dest=/usr/share/tomcat/webapps/sagiller.war
+  copy: src={{ sagiller_war_path }}/sagiller.war dest=/usr/share/tomcat/webapps/sagiller.war
 
 - name: start tomcat server
   command: service tomcat start
