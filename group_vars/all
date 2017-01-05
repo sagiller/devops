@@ -18,5 +18,7 @@ admin_password: admin
 
 sagiller_war_path: /var/lib/jenkins/workspace/sagiller_test_maven/target
 
+nginx_port: 80
+
 
 
