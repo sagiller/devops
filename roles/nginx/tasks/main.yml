@@ -65,4 +65,4 @@
   make: chdir=/opt/nginx-1.10.2 target=install
 
 - name: start nginx
-  command: /usr/sbin/nginx -c /etc/nginx/nginx.conf
+  command: /usr/local/nginx/sbin/nginx -c /usr/local/nginx/conf/nginx.conf
