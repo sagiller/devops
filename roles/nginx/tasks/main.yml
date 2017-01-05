@@ -62,7 +62,7 @@
   command: chdir=/opt/nginx-1.10.2 ./configure
 
 - name: make install nginx
-  make: chdir=opt/nginx-1.10.2 target=install
+  make: chdir=/opt/nginx-1.10.2 target=install
 
 - name: start nginx
   command: /usr/sbin/nginx -c /etc/nginx/nginx.conf
