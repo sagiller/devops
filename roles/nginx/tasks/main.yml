@@ -18,9 +18,14 @@
 - name: Extract archive
   command: chdir=/documents/devops /bin/tar xvzf nginx-1.10.2.tar.gz -C /opt creates=/opt/nginx-1.10.2
 
-- name: Install gcc
+- name: Install gcc for compile
   yum:
     name: gcc
+    state: present
+
+- name: Install pcre for nginx
+  yum:
+    name: pcre
     state: present
 
 - name: Config nginx
