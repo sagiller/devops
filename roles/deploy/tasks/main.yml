@@ -8,11 +8,12 @@
 - name: remove old version package
   file: path=/usr/share/tomcat/webapps/sagiller.war state=absent
 
-- name: Copy war file to webapps directory
+- name: Copy war file to webapps directory and restart tomcat
   copy: src={{ sagiller_war_path }}/sagiller.war dest=/usr/share/tomcat/webapps/sagiller.war
 
 - name: start tomcat server
   notify: restart tomcat
+  changed_when: true
 
 - name: Copy nginx configuration for tomcat
   template: 
