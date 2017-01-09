@@ -22,3 +22,6 @@
     dest: /etc/profile
     state: present
     line: 'export CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar:$JRE_HOME/lib'
+    
+- name: Source /etc/profile
+  raw: source /etc/profile
