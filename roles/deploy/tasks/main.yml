@@ -1,8 +1,4 @@
 ---
-dependencies:
-  - { role: nginx }
-  - { role: tomcat }
-
 - name: Stop tomcat server
   command: service tomcat stop
 
