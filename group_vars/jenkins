@@ -1,2 +1,2 @@
 ---
-jenkins_port: 8888
+jenkins_http_port: 8888

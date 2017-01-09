@@ -52,4 +52,4 @@
 
 - name: wait for jenkins to start
   wait_for:
-    port: "{{jenkins_port}}"
+    port: "{{jenkins_http_port}}"

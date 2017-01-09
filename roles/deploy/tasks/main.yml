@@ -19,3 +19,20 @@
     src: tomcat.conf 
     dest: /etc/nginx/conf.d/tomcat.conf
   notify: restart nginx
+
+- name: Copy nginx configuration for tomcat
+  template: 
+    src: domain.conf 
+    dest: /etc/nginx/conf.d/tomcat.conf
+  vars:
+    hostname: {{ tomcat_hostname }}
+    http_port: {{ tomcat_http_port }}
+  notify: restart nginx
+- name: Copy nginx configuration for tomcat
+  template: 
+    src: domain.conf 
+    dest: /etc/nginx/conf.d/jenkins.conf
+  vars:
+    hostname: {{ jenkins_hostname }}
+    http_port: {{ jenkins_http_port }}
+  notify: restart nginx
