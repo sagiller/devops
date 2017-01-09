@@ -23,5 +23,5 @@
     line: 'export PATH=$M2_HOME/bin:$PATH'
 
 - name: Source /etc/profile
-  command: source /etc/profile
+  raw: source /etc/profile
 
