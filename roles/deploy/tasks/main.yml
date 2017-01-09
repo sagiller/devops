@@ -16,12 +16,6 @@
 
 - name: Copy nginx configuration for tomcat
   template: 
-    src: tomcat.conf 
-    dest: /etc/nginx/conf.d/tomcat.conf
-  notify: restart nginx
-
-- name: Copy nginx configuration for tomcat
-  template: 
     src: domain.conf 
     dest: /etc/nginx/conf.d/tomcat.conf
   vars:
