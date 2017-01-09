@@ -22,7 +22,7 @@
     hostname: "{{ tomcat_hostname }}"
     http_port: "{{ tomcat_http_port }}"
   notify: restart nginx
-- name: Copy nginx configuration for tomcat
+- name: Copy nginx configuration for jenkins
   template: 
     src: domain.conf 
     dest: /etc/nginx/conf.d/jenkins.conf
