@@ -2,11 +2,11 @@
 - name: Install Java 1.8
   yum: name=java-1.8.0-openjdk state=present
 
-- name: add group "tomcat"
+- name: make sure group "tomcat" exist
   group: 
     name: tomcat
 
-- name: add user "tomcat"
+- name: make sure user "tomcat" exist
   user: 
     name: tomcat 
     group: tomcat 

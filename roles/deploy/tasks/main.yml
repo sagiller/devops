@@ -21,6 +21,7 @@
   vars:
     hostname: "{{ tomcat_hostname }}"
     http_port: "{{ tomcat_http_port }}"
+    subdomain: ""
   notify: restart nginx
 
 - name: Copy nginx configuration for jenkins
@@ -30,4 +31,15 @@
   vars:
     hostname: "{{ jenkins_hostname }}"
     http_port: "{{ jenkins_http_port }}"
+    subdomain: ""
+  notify: restart nginx
+
+- name: Copy nginx configuration for www.sagiller.com
+  template: 
+    src: domain.conf 
+    dest: /etc/nginx/conf.d/sagiller.conf
+  vars:
+    hostname: "{{ server_hostname }}"
+    http_port: "{{ tomcat_http_port }}"
+    subdomain: "sagiller"
   notify: restart nginx
