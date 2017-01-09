@@ -12,8 +12,7 @@
   copy: src={{ sagiller_war_path }}/sagiller.war dest=/usr/share/tomcat/webapps/sagiller.war
 
 - name: start tomcat server
-  notify: restart tomcat
-  changed_when: true
+  service: name=tomcat state=started
 
 - name: Copy nginx configuration for tomcat
   template: 
