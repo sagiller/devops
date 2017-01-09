@@ -1,4 +1,8 @@
-#dependency role: nginx;tomcat
+---
+dependencies:
+  - { role: nginx }
+  - { role: tomcat }
+
 - name: Stop tomcat server
   command: service tomcat stop
 
@@ -12,7 +16,8 @@
   copy: src={{ sagiller_war_path }}/sagiller.war dest=/usr/share/tomcat/webapps/sagiller.war
 
 - name: start tomcat server
-  command: service tomcat start
+  #command: service tomcat start
+  notify: restart tomcat
 
 - name: Copy nginx configuration for tomcat
   template: 
@@ -22,6 +27,7 @@
     hostname: "{{ tomcat_hostname }}"
     http_port: "{{ tomcat_http_port }}"
   notify: restart nginx
+
 - name: Copy nginx configuration for jenkins
   template: 
     src: domain.conf 
