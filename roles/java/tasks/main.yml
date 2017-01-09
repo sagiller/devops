@@ -1,6 +1,6 @@
 ---
 # This role is to install and configura java environment.
-- name: IInstall Java openjdk 1.8
+- name: Install Java openjdk 1.8
   yum:
     name: java-1.8.0-openjdk
     state: present
@@ -22,6 +22,6 @@
     dest: /etc/profile
     state: present
     line: 'export CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar:$JRE_HOME/lib'
-    
+
 - name: Source /etc/profile
   raw: source /etc/profile
