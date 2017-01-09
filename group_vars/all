@@ -18,6 +18,7 @@ admin_password: admin
 
 sagiller_war_path: /var/lib/jenkins/workspace/sagiller_test_maven/target
 nginx_root_path: /sites
+tomcat_webapps_path: /sites/tomcat
 
 nginx_port: 80
 server_hostname: www.sagiller.com

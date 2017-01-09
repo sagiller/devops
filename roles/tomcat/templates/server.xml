@@ -145,7 +145,7 @@
                resourceName="UserDatabase"/>
       </Realm>
 
-      <Host name="localhost"  appBase="webapps"
+      <Host name="localhost"  appBase="{{ tomcat_webapps_path }}"
             unpackWARs="true" autoDeploy="true">
 
         <!-- SingleSignOn valve, share authentication between web applications
@@ -160,7 +160,7 @@
         <Valve className="org.apache.catalina.valves.AccessLogValve" directory="logs"
                prefix="localhost_access_log" suffix=".txt"
                pattern="%h %l %u %t &quot;%r&quot; %s %b" />
-
+        <Context path="/sagiller" docBase="sagiller" debug="0" privileged="true"/>
       </Host>
     </Engine>
   </Service>

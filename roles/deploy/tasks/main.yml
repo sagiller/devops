@@ -9,7 +9,7 @@
   file: path=/usr/share/tomcat/webapps/sagiller.war state=absent
 
 - name: Copy war file to webapps directory and restart tomcat
-  copy: src={{ sagiller_war_path }}/sagiller.war dest=/usr/share/tomcat/webapps/sagiller.war
+  copy: src={{ sagiller_war_path }}/sagiller.war dest={{ tomcat_webapps_path }}/sagiller.war
 
 - name: start tomcat server
   service: name=tomcat state=started
