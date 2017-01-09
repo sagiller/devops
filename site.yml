@@ -32,6 +32,14 @@
   roles:
      - jenkins
 
+- name: invoke role nginx
+  hosts: centos
+  remote_user: sagiller
+  become: yes
+  become_method: sudo
+  roles:
+     - nginx     
+
 - name: invoke role tomcat
   hosts: centos
   remote_user: sagiller

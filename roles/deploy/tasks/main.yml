@@ -1,3 +1,4 @@
+#dependency role: nginx;tomcat
 - name: Stop tomcat server
   command: service tomcat stop
 
@@ -12,3 +13,9 @@
 
 - name: start tomcat server
   command: service tomcat start
+
+- name: Copy nginx configuration for tomcat
+  template: 
+    src: tomcat.conf 
+    dest: /etc/nginx/conf.d/tomcat.conf
+  notify: restart nginx

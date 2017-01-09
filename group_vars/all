@@ -22,6 +22,7 @@ nginx_port: 80
 server_hostname: www.sagiller.com
 tomcat_hostname: tomcat.sagiller.com
 jenkins_hostname: jenkins.sagiller.com
+nginx_default_hostname: nginx.sagiller.com
 
 
 
