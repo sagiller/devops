@@ -47,7 +47,7 @@
 - name: Copy nginx configuration for {{ server_hostname }}
   template: 
     src: domain.conf 
-    dest: /etc/nginx/conf.d/"{{ server_hostname }}".conf
+    dest: /etc/nginx/conf.d/{{ server_hostname }}.conf
   vars:
     hostname: "{{ server_hostname }}"
     http_port: "{{ tomcat_http_port }}"
