@@ -161,9 +161,6 @@
                prefix="localhost_access_log" suffix=".txt"
                pattern="%h %l %u %t &quot;%r&quot; %s %b" />
       </Host>
-      <Host name="www.sagiller.com" appBase="/sites/tomcat" unpackWARs="true" autoDeploy="true">
-        <Context path="" docBase="sagiller" reloadable="true" />
-      </Host>
     </Engine>
   </Service>
 </Server>
