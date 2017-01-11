@@ -22,6 +22,7 @@
     owner: tomcat
     group: tomcat
     mode: 0755
+    recurse: yes
 
 - name: copy /apache-tomcat-8.5.9.tar.gz to agent server
   copy: src=/documents/devops/apache-tomcat-8.5.9.tar.gz dest=/documents/devops/apache-tomcat-8.5.9.tar.gz 
