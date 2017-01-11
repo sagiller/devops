@@ -18,7 +18,7 @@
 - name: remove old version package
   file: path={{ tomcat_webapps_path }}/sagiller.war state=absent
 
-- name: Copy war file to webapps directory and restart tomcat
+- name: Copy war file to webapps directory
   copy: src={{ sagiller_war_path }}/sagiller.war dest={{ tomcat_webapps_path }}/sagiller.war
 
 - name: start tomcat server
