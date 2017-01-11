@@ -2,6 +2,13 @@
 - name: Stop tomcat server
   command: service tomcat stop
 
+- name: Make sure the site is exist in server.xml
+  lineinfile: 
+    dest: /usr/share/tomcat/conf/server.xml
+    regexp: '^</Engine>'
+    insertbefore: '^</Engine>'
+    line: '<Host name="{{ server_hostname }}" appBase="/sites/tomcat" unpackWARs="true" autoDeploy="true">\n<Context path="" docBase="sagiller" reloadable="true" />\n</Host>'
+
 - name: remove old version package direcoty
   file: path=/usr/share/tomcat/webapps/sagiller/ state=absent
 
@@ -21,7 +28,6 @@
   vars:
     hostname: "{{ tomcat_hostname }}"
     http_port: "{{ tomcat_http_port }}"
-    subdomain: ""
   notify: restart nginx
 
 - name: Copy nginx configuration for jenkins
@@ -31,15 +37,13 @@
   vars:
     hostname: "{{ jenkins_hostname }}"
     http_port: "{{ jenkins_http_port }}"
-    subdomain: ""
   notify: restart nginx
 
-- name: Copy nginx configuration for www.sagiller.com
+- name: Copy nginx configuration for {{ server_hostname }}
   template: 
     src: domain.conf 
-    dest: /etc/nginx/conf.d/sagiller.conf
+    dest: /etc/nginx/conf.d/"{{ server_hostname }}".conf
   vars:
     hostname: "{{ server_hostname }}"
     http_port: "{{ tomcat_http_port }}"
-    subdomain: "sagiller"
   notify: restart nginx
