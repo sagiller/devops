@@ -22,7 +22,9 @@
   copy: src={{ sagiller_war_path }}/sagiller.war dest={{ tomcat_webapps_path }}/sagiller.war
 
 - name: start tomcat server
-  service: name=tomcat state=started
+  service: 
+    name:tomcat 
+    state:restarted
 
 - name: Copy nginx configuration for tomcat
   template: 
