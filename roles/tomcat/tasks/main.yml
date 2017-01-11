@@ -15,10 +15,12 @@
   become: True
   become_method: sudo
 
-- name: mkdir /sites
+- name: mkdir {{ tomcat_webapps_path }}
   file: 
     path: "{{ tomcat_webapps_path }}" 
     state: directory
+    owner: tomcat
+    group: tomcat
     mode: 0755
 
 - name: copy /apache-tomcat-8.5.9.tar.gz to agent server
