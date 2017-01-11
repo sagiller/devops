@@ -13,10 +13,10 @@
         </Host>
 
 - name: remove old version package direcoty
-  file: path=/usr/share/tomcat/webapps/sagiller/ state=absent
+  file: path={{ tomcat_webapps_path }}/sagiller/ state=absent
 
 - name: remove old version package
-  file: path=/usr/share/tomcat/webapps/sagiller.war state=absent
+  file: path={{ tomcat_webapps_path }}/sagiller.war state=absent
 
 - name: Copy war file to webapps directory and restart tomcat
   copy: src={{ sagiller_war_path }}/sagiller.war dest={{ tomcat_webapps_path }}/sagiller.war
