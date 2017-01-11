@@ -29,7 +29,7 @@
 - name: Copy nginx configuration for tomcat
   template: 
     src: domain.conf 
-    dest: /etc/nginx/conf.d/tomcat.conf
+    dest: /etc/nginx/conf.d/{{ tomcat_hostname }}.conf
   vars:
     hostname: "{{ tomcat_hostname }}"
     http_port: "{{ tomcat_http_port }}"
@@ -38,7 +38,7 @@
 - name: Copy nginx configuration for jenkins
   template: 
     src: domain.conf 
-    dest: /etc/nginx/conf.d/jenkins.conf
+    dest: /etc/nginx/conf.d/{{ jenkins_hostname }}.conf
   vars:
     hostname: "{{ jenkins_hostname }}"
     http_port: "{{ jenkins_http_port }}"
