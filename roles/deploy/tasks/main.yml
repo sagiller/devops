@@ -3,11 +3,13 @@
   command: service tomcat stop
 
 - name: Make sure the site is exist in server.xml
-  lineinfile: 
+  blockinfile: 
     dest: /usr/share/tomcat/conf/server.xml
-    regexp: '^</Engine>'
-    insertbefore: '^</Engine>'
-    line: '<Host name="{{ server_hostname }}" appBase="/sites/tomcat" unpackWARs="true" autoDeploy="true">\n<Context path="" docBase="sagiller" reloadable="true" />\n</Host>'
+    insertbefore: '</Engine>'
+    content: |
+      <Host name="{{ server_hostname }}" appBase="/sites/tomcat" unpackWARs="true" autoDeploy="true">
+        <Context path="" docBase="sagiller" reloadable="true" />
+      </Host>
 
 - name: remove old version package direcoty
   file: path=/usr/share/tomcat/webapps/sagiller/ state=absent
