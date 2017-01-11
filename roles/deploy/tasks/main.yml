@@ -23,8 +23,8 @@
 
 - name: start tomcat server
   service: 
-    name:tomcat 
-    state:restarted
+    name: tomcat 
+    state: restarted
 
 - name: Copy nginx configuration for tomcat
   template: 
