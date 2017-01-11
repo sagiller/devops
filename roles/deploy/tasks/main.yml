@@ -6,10 +6,11 @@
   blockinfile: 
     dest: /usr/share/tomcat/conf/server.xml
     insertbefore: '</Engine>'
+    marker: "# {mark} {{ server_hostname }} with ansible"
     content: |
-      <Host name="{{ server_hostname }}" appBase="/sites/tomcat" unpackWARs="true" autoDeploy="true">
-        <Context path="" docBase="sagiller" reloadable="true" />
-      </Host>
+        <Host name="{{ server_hostname }}" appBase="/sites/tomcat" unpackWARs="true" autoDeploy="true">
+          <Context path="" docBase="sagiller" reloadable="true" />
+        </Host>
 
 - name: remove old version package direcoty
   file: path=/usr/share/tomcat/webapps/sagiller/ state=absent
