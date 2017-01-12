@@ -1,12 +1,12 @@
 ---
-- name: copy ansible-tower-setup-latest.tar.gz to agent server
-  copy: src=/documents/devops/ansible-tower-setup-latest.tar.gz dest=/documents/devops/ansible-tower-setup-latest.tar.gz 
+- name: copy ansible-tower-setup-3.0.2.tar.gz to agent server
+  copy: src=/documents/devops/ansible-tower-setup-3.0.2.tar.gz dest=/documents/devops/ansible-tower-setup-3.0.2.tar.gz 
 
 - name: Extract archive
-  command: chdir=/documents/devops /bin/tar xvf ansible-tower-setup-latest.tar.gz -C /opt creates=/opt/
+  command: chdir=/documents/devops /bin/tar xvf ansible-tower-setup-3.0.2.tar.gz -C /opt creates=/opt/ansible-tower-setup-3.0.2
 - name: Configure tower password
-  template: src=inventory dest=/opt/ansible-tower-setup*/inventory
+  template: src=inventory dest=/opt/ansible-tower-setup-3.0.2/inventory
 
 - name: run setup.sh
-  command: /opt/ansible-tower-setup*/setup.sh
+  command: /opt/ansible-tower-setup-3.0.2/setup.sh
 
