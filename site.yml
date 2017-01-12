@@ -3,8 +3,6 @@
 - name: invoke role init
   hosts: init
   remote_user: root
-  become: yes
-  become_method: sudo
   roles:
      - initserver
 
