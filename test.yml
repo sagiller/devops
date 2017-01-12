@@ -1,7 +1,5 @@
 - name: invoke role
-  hosts: centos
-  remote_user: sagiller
-  become: yes
-  become_method: sudo
+  hosts: init
+  remote_user: root
   roles:
-     - tower 
+     - initserver 
