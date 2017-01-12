@@ -1,7 +1,7 @@
 ---
 #playbook for test
 - name: invoke role init
-  hosts: centos
+  hosts: init
   remote_user: root
   roles:
      - initserver
