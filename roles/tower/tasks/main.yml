@@ -3,11 +3,10 @@
   copy: src=/documents/devops/ansible-tower-setup-latest.tar.gz dest=/documents/devops/ansible-tower-setup-latest.tar.gz 
 
 - name: Extract archive
-  command: chdir=/documents/devops /bin/tar xvf ansible-tower-setup-latest.tar.gz -C /opt creates=/opt/ansible-tower-setup-latest
-
+  command: chdir=/documents/devops /bin/tar xvf ansible-tower-setup-latest.tar.gz -C /opt creates=/opt/
 - name: Configure tower password
-  template: src=inventory dest=/opt/ansible-tower-setup-latest/inventory
+  template: src=inventory dest=/opt/ansible-tower-setup*/inventory
 
 - name: run setup.sh
-  command: /opt/ansible-tower-setup-latest/setup.sh
+  command: /opt/ansible-tower-setup*/setup.sh
 
