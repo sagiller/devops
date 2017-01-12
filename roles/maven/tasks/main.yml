@@ -25,3 +25,8 @@
 - name: Source /etc/profile
   raw: source /etc/profile
 
+- name: Copy settings.xml configuration to set maven mirror
+  template: 
+    src: settings.xml
+    dest: /opt/apache-maven-3.3.9/conf
+
