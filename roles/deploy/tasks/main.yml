@@ -1,6 +1,8 @@
 ---
 - name: Stop tomcat server
-  command: service tomcat stop
+  service: 
+    name: tomcat 
+    state: stopped
 
 - name: Make sure the site is exist in server.xml
   blockinfile: 
