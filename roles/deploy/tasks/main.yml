@@ -22,7 +22,7 @@
 
 - name: Copy war file to webapps directory
   copy: src={{ sagiller_war_path }}/sagiller.war dest={{ tomcat_webapps_path }}/sagiller.war
-
+  ignore_errors: yes
 - name: start tomcat server
   service: 
     name: tomcat 

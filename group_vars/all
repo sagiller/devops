@@ -20,7 +20,7 @@ sagiller_war_path: /var/lib/jenkins/workspace/sagiller_pipeline/target
 nginx_root_path: /sites
 tomcat_webapps_path: /sites/tomcat
 #!!!NOTE: if run on product server, please remove -Djava.security.egd=file:/dev/./urandom
-JAVA_OPTS: -server -Xms512m -Xmx1024m -XX:PermSize=64M -XX:MaxPermSize=128m -Djava.security.egd=file:/dev/./urandom
+JAVA_OPTS: -server -Xms512m -Xmx1024m -Djava.security.egd=file:/dev/./urandom
 
 nginx_port: 80
 server_hostname: www.sagiller.com
