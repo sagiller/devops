@@ -1,7 +1,7 @@
 ---
-- name: Ensure Java is installed.
-  package: "name={{ item }} state=installed"
-  with_items: "{{ java_packages }}"
+# - name: Ensure Java is installed.
+#   package: "name={{ item }} state=installed"
+#   with_items: "{{ java_packages }}"
 
 - name: copy jdk-8u***-linux-x64.tar.gz to agent server
   copy: src=/documents/devops/jdk-8u112-linux-x64.tar.gz dest=/documents/devops/jdk-8u112-linux-x64.tar.gz 
