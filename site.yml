@@ -13,6 +13,9 @@
   become_method: sudo
   roles:
      - java
+       when: "ansible_os_family == 'RedHat'"
+       java_packages:
+         - java-1.8.0-openjdk
 
 - name: invoke role maven
   hosts: centos

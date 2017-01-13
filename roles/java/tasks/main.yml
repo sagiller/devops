@@ -1,27 +1,65 @@
 ---
 # This role is to install and configura java environment.
-- name: Install Java openjdk 1.8
-  yum:
-    name: java-1.8.0-openjdk
-    state: present
+- name: Include OS-specific variables.
+  include_vars: "{{ ansible_os_family }}.yml"
+  when: ansible_distribution != 'Ubuntu' or ansible_distribution != 'Fedora'
 
-- name: Config java environment parameters
-  lineinfile:
-    dest: /etc/profile
-    state: present
-    line: 'export JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk'
-- lineinfile:
-    dest: /etc/profile
-    state: present
-    line: 'export JRE_HOME=/usr/lib/jvm/java-1.8.0-openjdk/jre'
-- lineinfile:
-    dest: /etc/profile
-    state: present
-    line: 'export PATH=$PATH:$JAVA_HOME/bin:$JRE_HOME/bin'
-- lineinfile:
-    dest: /etc/profile
-    state: present
-    line: 'export CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar:$JRE_HOME/lib'
+- name: Include OS-specific variables for Fedora.
+  include_vars: "{{ ansible_distribution }}.yml"
+  when: ansible_distribution == 'Fedora'
 
-- name: Source /etc/profile
-  raw: source /etc/profile
+- name: Include version-specific variables for Ubuntu.
+  include_vars: "{{ ansible_distribution }}-{{ ansible_distribution_version }}.yml"
+  when: ansible_distribution == 'Ubuntu'
+
+- name: Define java_packages.
+  set_fact:
+    java_packages: "{{ __java_packages | list }}"
+  when: java_packages is not defined
+
+# Setup/install tasks.
+- include: setup-RedHat.yml
+  when: ansible_os_family == 'RedHat'
+  static: no
+
+- include: setup-Debian.yml
+  when: ansible_os_family == 'Debian'
+  static: no
+
+- include: setup-FreeBSD.yml
+  when: ansible_os_family == 'FreeBSD'
+  static: no
+
+# - name: Install Java openjdk 1.8
+#   yum:
+#     name: java-1.8.0-openjdk
+#     state: present
+
+# - name: Config java environment parameters
+#   lineinfile:
+#     dest: /etc/profile
+#     state: present
+#     line: 'export JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk'
+# - lineinfile:
+#     dest: /etc/profile
+#     state: present
+#     line: 'export JRE_HOME=/usr/lib/jvm/java-1.8.0-openjdk/jre'
+# - lineinfile:
+#     dest: /etc/profile
+#     state: present
+#     line: 'export PATH=$PATH:$JAVA_HOME/bin:$JRE_HOME/bin'
+# - lineinfile:
+#     dest: /etc/profile
+#     state: present
+#     line: 'export CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar:$JRE_HOME/lib'
+
+# - name: Source /etc/profile
+#   raw: source /etc/profile
+
+# Environment setup.
+- name: Set JAVA_HOME if configured.
+  template:
+    src: java_home.sh.j2
+    dest: /etc/profile.d/java_home.sh
+    mode: 0644
+  when: java_home
