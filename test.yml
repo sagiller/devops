@@ -1,5 +1,8 @@
-- name: invoke role
-  hosts: init
-  remote_user: root
+- name: invoke role java
+  hosts: centos
+  remote_user: sagiller
+  become: yes
+  become_method: sudo
   roles:
-     - initserver 
+     - role: java
+       when: "ansible_os_family == 'RedHat'"
