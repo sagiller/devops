@@ -3,11 +3,11 @@
   package: "name={{ item }} state=installed"
   with_items: "{{ java_packages }}"
 
-- name: copy apache-tomcat-8.5.9.tar.gz to agent server
-  copy: src=/documents/devops/jdk-8u111-linux-x64.tar.gz dest=/documents/devops/jdk-8u111-linux-x64.tar.gz 
+- name: copy jdk-8u***-linux-x64.tar.gz to agent server
+  copy: src=/documents/devops/jdk-8u112-linux-x64.tar.gz dest=/documents/devops/jdk-8u112-linux-x64.tar.gz 
 
 - name: Extract archive
-  command: chdir=/documents/devops /bin/tar xvf jdk-8u111-linux-x64.tar.gz -C /opt creates={{ java_home }}
+  command: chdir=/documents/devops /bin/tar xvf jdk-8u112-linux-x64.tar.gz -C /opt creates={{ java_home }}
 
 - name: Config java environment parameters
   lineinfile:

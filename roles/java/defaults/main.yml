@@ -3,4 +3,4 @@
 # default (OpenJDK 1.7).
 # java_packages: []
 
-#java_home: "/opt/java8u111"
+#java_home: "/opt/java8u112"
