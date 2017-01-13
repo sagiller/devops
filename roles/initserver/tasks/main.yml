@@ -1,5 +1,12 @@
 ---
 # This role is to init server status with common tools and configs for centos7
+- name: Avoid ssh connection shutdown
+  blockinfile: 
+    dest: /etc/ssh/sshd_config
+    marker: "# {mark} {{ Avoid ssh connection shutdown }} with ansible"
+    content: |
+        ClientAliveInterval 60
+        ClientAliveCountMax 3
 
 - name: Add group "sagiller"
   group:
