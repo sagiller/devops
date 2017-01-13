@@ -32,6 +32,8 @@ tower_admin_password: 123456
 tower_redis_password: 123456
 tower_pg_password: 123456
 
+java_home: "/opt/java8u111"
+
 
 
 
